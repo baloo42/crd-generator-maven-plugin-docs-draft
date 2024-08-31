@@ -83,5 +83,5 @@ This configuration will result in the following workflow:
 1. The collector tries to find an existing jandex index (1a) in the project. If it doesn't exist (1b), a new index will be created which includes the project classes.
 2. The collector tries to find an existing jandex index (2a) in the dependency (Jar Archive 2). If it doesn't exist (2b), a new index will be created which includes classes of the dependency.
 3. Both, existing and created indices, are added to the in-memory index of the collector.
-4. The collector looks up Custom Resource classes in the internal index.
+4. The collector looks up Custom Resource classes in the internal in-memory index.
 5. Note that Custom Resource classes of other dependencies are ignored, because they are not included in the _scan scope_.
