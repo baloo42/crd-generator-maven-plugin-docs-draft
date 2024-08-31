@@ -3,8 +3,8 @@
 ![](crd-generator-maven-plugin-context.drawio.svg)
 
 
-1. The CRD-Generator Maven Plugin determines first it's configuration by reading various settings.
-2. If no Custom Resource classes are provided via the the config, the _collector_ is used to find Custom Resource classes in a defined _scan scope_. The scan scope must be part of the configured classpath.
+1. The CRD-Generator Maven Plugin determines it's configuration by reading various settings.
+2. If no Custom Resource classes are provided via the the config, the _collector_ is used to find Custom Resource classes in a defined _scan scope_.
 3. The given Custom Resource classes and the corresponding dependent java classes are now loaded via the _ClassLoader_.
 4. Finally, the loaded classes are used by the _crd-generator-v2_ to create the CRDs.
 
@@ -40,9 +40,9 @@ This configuration will result in the following workflow:
 
 ![](collector-project-scan-scope.drawio.svg)
 
-1. The collector tries to find an existing jandex index (1a) first. If it doesn't exist (1b), a new index will be created which includes the project classes.
+1. The collector tries to find an existing jandex index (1a). If it doesn't exist (1b), a new index will be created which includes the project classes.
 2. The existing or created index is added to the in-memory index of the collector.
-3. In the last step, the collector looks up Custom Resource classes in the internal index.
+3. The collector looks up Custom Resource classes in the internal in-memory index.
 
 
 ### Scan-Scope: Project and Dependency
@@ -81,7 +81,7 @@ This configuration will result in the following workflow:
 ![](collector-extended-scan-scope.drawio.svg)
 
 1. The collector tries to find an existing jandex index (1a) in the project. If it doesn't exist (1b), a new index will be created which includes the project classes.
-2. The collector tries to find an existing jandex index (2a) in the dependency. If it doesn't exist (2b), a new index will be created which includes classes of the dependency.
+2. The collector tries to find an existing jandex index (2a) in the dependency (Jar Archive 2). If it doesn't exist (2b), a new index will be created which includes classes of the dependency.
 3. Both, existing and created indices, are added to the in-memory index of the collector.
-4. In the last step, the collector looks up Custom Resource classes in the internal index.
+4. The collector looks up Custom Resource classes in the internal index.
 5. Note that Custom Resource classes of other dependencies are ignored, because they are not included in the _scan scope_.
